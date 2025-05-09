@@ -51,7 +51,8 @@ class DB_Manager:
                 (7, 'FLASK'),
                 (8, 'AI')
             ]
-            con.executemany("INSERT INTO skills VALUES (?, ?)", skills_data) 
+            con.executemany("INSERT INTO skills VALUES (?, ?)", skills_data)
+            #burada daha fazla beceri ekleyebilirsiniz 
              
              
 
@@ -86,6 +87,7 @@ class DB_Manager:
         data = [(project_id, skill_id)]
         sql = 'INSERT OR IGNORE INTO project_skills VALUES(?, ?)'
         self.__executemany(sql, data)
+        #burası daha kısa olabilir
 
 
     def get_statuses(self):
@@ -116,6 +118,7 @@ JOIN project_skills ON projects.project_id = project_skills.project_id
 JOIN skills ON skills.skill_id = project_skills.skill_id 
 WHERE project_name = ?''', data = (project_name,) )
         return ', '.join([x[0] for x in res])
+        #burası dağınık görünüyor, daha iyi bir şekilde düzenlenebilir.
     
     def get_project_info(self, user_id, project_name):
         sql = """
@@ -146,9 +149,9 @@ WHERE project_name=? AND user_id=?
 if __name__ == '__main__':
     dbmanager = DB_Manager(DATABASE)
     #dbmanager.create_tables()
-    data = [(5000000, "pörtfoy botu version 2.0", "https://github.com/windows95hothead1/bes", 1)]
-    dbmanager.insert_project(data=data)
-    dbmanager.update_projects('description', )
+    #data = [(5000000, "pörtfoy botu version 2.0", "https://github.com/windows95hothead1/bes", 1)]
+    #dbmanager.insert_project(data=data)
+    #dbmanager.update_projects('description', )
 
 
 
